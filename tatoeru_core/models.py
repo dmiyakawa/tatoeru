@@ -7,8 +7,8 @@ class Post(models.Model):
     theme = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return (u'user: {}, theme: {}'
-                .format(self.user, self.theme))
+        return (u'user: {} ({}), theme: {}'
+                .format(self.user, self.user.email, self.theme))
 
 
 class Reply(models.Model):
@@ -17,5 +17,5 @@ class Reply(models.Model):
     tatoe = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return (u'user: {}, post: {}, tatoe: {}'
-                .format(self.user, self.post, self.tatoe))
+        return (u'user: {} ({}), post: {}, tatoe: {}'
+                .format(self.user, self.user.email, self.post, self.tatoe))
