@@ -13,7 +13,7 @@ from django.shortcuts import render, redirect
 
 NAMESPACE = os.path.basename(dirname(os.path.abspath(__file__)))
 
-logger = logging.getLogger('debug')
+logger = logging.getLogger('default')
 
 def home(request):
     user = request.user
@@ -23,8 +23,6 @@ def home(request):
     lst = []
     for post in posts:
         replies = Reply.objects.filter(post=post)
-        logger.debug('replies: {}'.format(replies))
-        logger.debug('id: {}'.format(post.id))
         lst.append({ 'post_id': post.id,
                      'post_theme': post.theme,
                      'replies': replies })
@@ -100,6 +98,6 @@ def send_kotaeru_request(request):
     post = lst[0]
 
     reply = Reply.objects.create(user=request.user, post=post, tatoe=tatoe)
-    logger.debug('reply={}'.format(reply))
+    logger.debug('post: {}, reply={}'.format(post, reply))
 
     return redirect('tatoeru_core:home')

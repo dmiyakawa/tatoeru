@@ -191,6 +191,11 @@ LOGGING = {
         'debug':{
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
+        },
+        'console':{
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
         },  
         'mail_admins': {
             'level': 'ERROR',
@@ -207,6 +212,10 @@ LOGGING = {
         },
     },
     'loggers': {
+        'default': {
+            'handlers': ['console', 'logfile'],
+            'level': 'DEBUG',
+            },
         'debug': {
             'handlers': ['debug', 'logfile'],
             'level': 'DEBUG',
