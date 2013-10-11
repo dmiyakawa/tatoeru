@@ -7,11 +7,11 @@
 .desc { font-size: small; }
 .motomeru { font-size: xx-large; }
 .kotaeru { font-size: small; }
-.notanswered {
+.not_answered {
    font-size: x-small;
    color: #333333;
 }
-
+.xxsmall { font-size: xx-small; }
     </style>
   </head>
 <body>
@@ -21,6 +21,7 @@
     <li>タトエをモトメル</li>
     <li>オダイにコタエル</li>
   </ul>
+  <p class="xxsmall">注意: 投稿には Google アカウントでの認証が必要です。</p>
   {% if lst %}
   <h2>投稿されたオダイ</h2>
   {% for entry in lst %}
@@ -32,7 +33,7 @@
       {% endfor %}
     </ul>
     {% else %}
-    <p class="notanswered">まだタトエは得られていない..</p>
+    <p class="not_answered">まだタトエは得られていない..</p>
     {% endif %}
     <p class="kotaeru"><a href="{% url 'tatoeru_core:kotaeru' entry.post_id %}">コタエル</a>
   {% endfor %}

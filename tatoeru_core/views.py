@@ -17,7 +17,11 @@ logger = logging.getLogger('default')
 
 def home(request):
     user = request.user
-    logger.debug('home(). user.email: {}'.format(user.email))
+    if user.is_anonymous():
+        logger.debug('home(). Anonymous User')
+    else:
+        logger.debug('home(). user.email: {}'.format(user.email))
+
     posts = Post.objects.all()
 
     lst = []
