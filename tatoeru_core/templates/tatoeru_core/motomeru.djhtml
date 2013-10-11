@@ -12,6 +12,6 @@
     <input type=submit value="モトメル" />
   </form>
   <hr />
-  <a href="{% link 'home' %}">Home</a>
+  <a href="{% url 'tatoeru_core:home' %}">Home</a>
 </body>
 </html>
