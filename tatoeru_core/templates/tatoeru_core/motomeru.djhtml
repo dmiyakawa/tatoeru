@@ -1,0 +1,15 @@
+{% load url from future %}
+
+<html>
+<head>
+<title>Tatoeru Home</title>
+</head>
+<body>
+  <h1>タトエをモトメル</h1>
+  <form action="{% url 'tatoeru_core:send_motomeru_request' %}" method="post">
+    {% csrf_token %}
+    <label>オダイ: <input type="text" name="theme" size="50"/></label><br />
+    <input type=submit value="モトメル" />
+  </form>
+</body>
+</html>

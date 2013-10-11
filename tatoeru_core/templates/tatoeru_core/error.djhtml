@@ -1,0 +1,11 @@
+{% load url from future %}
+
+<html>
+<head>
+<title>Error</title>
+</head>
+<body>
+  <h1>エラー</h1>
+  <a href="{% url 'tatoeru_core:home' %}">帰る</a>
+</body>
+</html>
