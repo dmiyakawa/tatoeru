@@ -14,5 +14,7 @@
     <label>タトエ: <input type="text" name="tatoe" size="100" /></label><br />
     <input type=submit value="コタエル" />
   </form>
+  <hr />
+  <a href="{% link 'home' %}">Home</a>
 </body>
 </html>

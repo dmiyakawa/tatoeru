@@ -7,6 +7,6 @@
 <body>
   <h1>エラー</h1>
   <p>何か起きたようだ</p>
-  <a href="{% url 'tatoeru_core:home' %}">帰る</a>
+  <a href="{% url 'tatoeru_core:home' %}">Home</a>
 </body>
 </html>

@@ -11,5 +11,7 @@
     <label>オダイ: <input type="text" name="theme" size="50"/></label><br />
     <input type=submit value="モトメル" />
   </form>
+  <hr />
+  <a href="{% link 'home' %}">Home</a>
 </body>
 </html>
