@@ -173,6 +173,15 @@ OPENID_SSO_SERVER_URL = 'https://www.google.com/accounts/o8/id'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(levelname)s %(asctime)s %(module)s %(process)d'
+                       ' %(thread)d %(message)s')
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
@@ -187,11 +196,19 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'logfile': {
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(PROJECT_ROOT, 'data/django.log'),
+            'maxBytes': 5 * 1024 * 1024,
+            'backupCount': 0,
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'debug': {
-            'handlers': ['debug'],
+            'handlers': ['debug', 'logfile'],
             'level': 'DEBUG',
         },
         'django.request': {

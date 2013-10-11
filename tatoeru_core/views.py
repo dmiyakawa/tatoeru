@@ -15,10 +15,9 @@ NAMESPACE = os.path.basename(dirname(os.path.abspath(__file__)))
 
 logger = logging.getLogger('debug')
 
-@login_required
 def home(request):
     user = request.user
-    logger.debug('home()')
+    logger.debug('home(). user.email: {}'.format(user.email))
     posts = Post.objects.all()
 
     lst = []
@@ -34,20 +33,25 @@ def home(request):
                   { 'lst': lst })
 
 
+@login_required
 def error(request):
-    logger.debug('error()')
+    user = request.user
+    logger.debug('error(). user.email: {}'.format(user.email))
     return render(request, '{}/error.djhtml'.format(NAMESPACE))
 
 
 @login_required
 def motomeru(request):
-    logger.debug('motomeru()')
+    user = request.user
+    logger.debug('motomeru(). user.email: {}'.format(user.email))
     return render(request, '{}/motomeru.djhtml'.format(NAMESPACE))
 
 
 @login_required
 def send_motomeru_request(request):
-    logger.debug('send_motomeru_motomeru()')
+    user = request.user
+    logger.debug('send_motomeru_motomeru(). user.email: {}'
+                 .format(user.email))
     theme = request.POST['theme']
     if not theme:
         logger.error('No theme provided')
@@ -65,7 +69,9 @@ def send_motomeru_request(request):
 
 @login_required
 def kotaeru(request, post_id):
-    logger.debug('kotaeru(): post_id={}'.format(post_id))
+    user = request.user
+    logger.debug('kotaeru(): user.email: {}, post_id: {}'
+                 .format(user.email, post_id))
 
     lst = Post.objects.filter(id=post_id)
     if len(lst) < 1:
@@ -81,9 +87,11 @@ def kotaeru(request, post_id):
 @login_required
 def send_kotaeru_request(request):
     user = request.user
-    logger.debug('send_kotaeru_request()')
     post_id = request.POST['post_id']
     tatoe = request.POST['tatoe']
+    logger.debug(
+        'send_kotaeru_request(). user.email: {}. post_id: {}, tatoe: {}'
+        .format(user.email, post_id, tatoe))
 
     lst = Post.objects.filter(id=post_id)
     if len(lst) < 1:
