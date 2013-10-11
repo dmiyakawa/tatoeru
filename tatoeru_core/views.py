@@ -35,10 +35,13 @@ def home(request):
                   { 'lst': lst })
 
 
-@login_required
 def error(request):
     user = request.user
-    logger.debug('error(). user.email: {}'.format(user.email))
+    if user.is_anonymous():
+        logger.debug('error(). Anonymous User')
+    else:
+        logger.debug('error(). user.email: {}'.format(user.email))
+
     return render(request, '{}/error.djhtml'.format(NAMESPACE))
 
 
