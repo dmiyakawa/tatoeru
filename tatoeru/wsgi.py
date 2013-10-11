@@ -15,6 +15,13 @@ framework.
 """
 import os
 
+# Insert current directory into sys.path.
+import sys
+from os.path import dirname
+PROJECT_ROOT = dirname(dirname(os.path.realpath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tatoeru.settings")
 
 # This application object is used by any WSGI server configured to use this
